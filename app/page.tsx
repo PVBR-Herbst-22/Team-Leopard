@@ -55,8 +55,9 @@ export default function Home() {
                 </div>
               </form>
             </div>
-            <div className="h-full w-full">
+            <div className="h-full w-full max-h-96 max-w-96">
               <Image
+                className="h-full w-full aspect-square"
                 src={man}
                 alt="Giphy"
               />
