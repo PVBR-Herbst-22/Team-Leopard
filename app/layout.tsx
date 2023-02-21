@@ -7,7 +7,7 @@ export default function RootLayout({
 }) {
   return (
     <>
-      <div className="min-h-full">
+      <div data-theme="cupcake" className="min-h-full">
         <nav className="navbar fixed">
           <div className="flex-1">
             <a href="/" className="btn btn-ghost normal-case text-xl">
@@ -25,9 +25,7 @@ export default function RootLayout({
             </div>
           </div>
         </nav>
-        <div className="h-full w-full">
-            {children}
-        </div>
+        <div className="h-full w-full">{children}</div>
       </div>
     </>
   );
