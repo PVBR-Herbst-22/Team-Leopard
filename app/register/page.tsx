@@ -7,14 +7,14 @@ export default function Home() {
       <div className="h-fit flex items-center">
         <div className="flex justify-center items-center">
           <div className="grid grid-cols-2 gap-10 items-center">
-            <div className="flex flex-col items-center h-hull w-fit rounded-lg p-5 py-5 shadow-lg glass">
+            <div className="card flex flex-col items-center h-hull w-fit rounded-lg p-5 py-5 shadow-lg max-w-xs glass">
               <h2 className="mt-2 text-center text-3xl font-bold tracking-tight text-base-content">
                 Register for an account
               </h2>
               <p className="text-center mt-1">
                 Or{" "}
                 <a
-                  href="/register"
+                  href="/login"
                   className="text-primary font-medium hover:cursor-pointer hover:underline"
                 >
                   login
