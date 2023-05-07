@@ -3,6 +3,7 @@
 import Button from "@/components/ui/Button";
 import { FC, useState } from "react";
 import { signIn } from "next-auth/react";
+import toast from "react-hot-toast";
 
 const Page: FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -12,7 +13,7 @@ const Page: FC = () => {
     try {
       await signIn("google");
     } catch (error) {
-      // display error message to user
+      toast.error("There was a problem signing in");
     } finally {
       setIsLoading(false);
     }
