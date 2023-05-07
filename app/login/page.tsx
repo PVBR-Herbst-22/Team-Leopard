@@ -1,77 +1,76 @@
 "use client";
-import Image from "next/image";
-import man from "public/giphy.gif";
 
-export default function Home() {
+import Button from "@/components/ui/Button";
+import { FC, useState } from "react";
+import { signIn } from "next-auth/react";
 
-  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e: React.FormEvent<HTMLFormElement>) => { 
-    console.log(e.currentTarget.email.value);
+const Page: FC = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  async function loginWithGoogle() {
+    setIsLoading(true);
+    try {
+      await signIn("google");
+    } catch (error) {
+      // display error message to user
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   return (
-    <div className="h-full from-primary to-secondary bg-gradient-to-br flex flex-row justify-center items-center">
-      <div className="h-fit flex items-center">
-        <div className="flex justify-center items-center">
-          <div className="grid grid-cols-2 gap-10 items-center">
-            <div className="flex flex-col items-center h-hull w-fit max-w-xs rounded-lg p-5 py-5 shadow-lg glass">
-              <h2 className="mt-2 text-center text-3xl font-bold tracking-tight text-base-content">
-                Login to your account
-              </h2>
-              <p className="text-center mt-1">
-                Or{" "}
-                <a
-                  href="/register"
-                  className="text-primary font-medium hover:cursor-pointer hover:underline"
-                >
-                  register
-                </a>{" "}
-                if you don't already have an account
-              </p>
-              <form
-                action="?/login"
-                method="POST"
-                className="flex flex-col items-center space-y-2 w-full pt-4"
-                onSubmit={handleSubmit}
-              >
-                <div className="form-control w-full max-w-md">
-                  <label htmlFor="email" className="label font-medium pb-1">
-                    <span className="label-text">Email</span>
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    className="input input-bordered w-full max-w-md"
-                  />
-                </div>
-                <div className="form-control w-full max-w-md">
-                  <label htmlFor="password" className="label font-medium pb-1">
-                    <span className="label-text">Password</span>
-                  </label>
-                  <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    className="input input-bordered w-full max-w-md"
-                  />
-                </div>
-                <div className="w-full max-w-md pt-2">
-                  <button type="submit" className="btn btn-primary w-full">
-                    Login
-                  </button>
-                </div>
-              </form>
-            </div>
-            <div className="h-full w-full max-h-96 max-w-96">
-              <Image
-                className="h-full w-full aspect-square"
-                src={man}
-                alt="Giphy"
-              />
-            </div>
+    <>
+      <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div className="w-full flex flex-col items-center max-w-md space-y-8">
+          <div className="flex flex-col items-center gap-8">
+            logo
+            <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
+              Sign in to your account
+            </h2>
           </div>
+
+          <Button
+            isLoading={isLoading}
+            type="button"
+            className="max-w-sm mx-auto w-full"
+            onClick={loginWithGoogle}
+          >
+            {isLoading ? null : (
+              <svg
+                className="mr-2 h-4 w-4"
+                aria-hidden="true"
+                focusable="false"
+                data-prefix="fab"
+                data-icon="github"
+                role="img"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                  fill="#4285F4"
+                />
+                <path
+                  d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                  fill="#34A853"
+                />
+                <path
+                  d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                  fill="#FBBC05"
+                />
+                <path
+                  d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                  fill="#EA4335"
+                />
+                <path d="M1 1h22v22H1z" fill="none" />
+              </svg>
+            )}
+            Google
+          </Button>
         </div>
       </div>
-    </div>
+    </>
   );
-}
+};
+
+export default Page;

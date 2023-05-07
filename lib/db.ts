@@ -1,18 +1,6 @@
-import { Database } from "@/types/supabase";
-import { createClient } from "@supabase/supabase-js";
-import { getServerSession } from "next-auth";
-import { authOptions } from "./auth";
+import { Redis } from "@upstash/redis";
 
-const session = await getServerSession(authOptions);
-
-export const supabase = createClient<Database>(
-  process.env.DB_URL!,
-  process.env.SUPABASE_ANON_KEY!,
-  {
-    global: {
-      headers: {
-        Authorization: `Bearer ${session?.supabaseAccessToken}`,
-      },
-    },
-  }
-);
+export const db = new Redis({
+  url: process.env.UPSTASH_REDIS_REST_URL!,
+  token: process.env.UPSTASH_REDIS_REST_TOKEN!,
+});
