@@ -1,5 +1,3 @@
-import Image from "next/image";
-import man from "public/giphy.gif";
 import Link from 'next/link';
 
 export default function Home() {
