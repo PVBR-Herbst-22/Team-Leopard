@@ -1,7 +1,13 @@
+"use client";
 import Image from "next/image";
 import man from "public/giphy.gif";
 
 export default function Home() {
+
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e: React.FormEvent<HTMLFormElement>) => { 
+    console.log(e.currentTarget.email.value);
+  }
+
   return (
     <div className="h-full from-primary to-secondary bg-gradient-to-br flex flex-row justify-center items-center">
       <div className="h-fit flex items-center">
@@ -25,6 +31,7 @@ export default function Home() {
                 action="?/login"
                 method="POST"
                 className="flex flex-col items-center space-y-2 w-full pt-4"
+                onSubmit={handleSubmit}
               >
                 <div className="form-control w-full max-w-md">
                   <label htmlFor="email" className="label font-medium pb-1">
