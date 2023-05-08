@@ -15,7 +15,10 @@ export default async function RootLayout({
   return (
     <html className="h-full" lang="en">
       <body className="h-full">
-        <div data-theme="cupcake" className="min-h-full">
+        <div
+          data-theme="cupcake"
+          className="min-h-full from-primary to-secondary bg-gradient-to-br"
+        >
           <nav className="navbar fixed">
             <div className="flex-1">
               <a href="/" className="btn btn-ghost normal-case text-xl">
@@ -25,14 +28,14 @@ export default async function RootLayout({
             <div className="flex-none">
               {!session?.user ? (
                 <div className="dropdown dropdown-end">
-                  <a href="/login" className="btn btn-primary mr-10">
+                  <a href="/login" className="btn btn-primary">
                     Login
                   </a>
                 </div>
               ) : (
                 <div className="mx-6 mt-auto flex items-center">
                   <div className="flex flex-1 items-center gap-x-4 text-sm font-semibold leading-6 text-gray-900">
-                    <div className="relative h-8 w-8 bg-gray-50">
+                    <div className="relative h-8 w-8">
                       <Image
                         fill
                         referrerPolicy="no-referrer"
@@ -46,7 +49,7 @@ export default async function RootLayout({
                     <div className="flex flex-col">
                       <span aria-hidden="true">{session.user.name}</span>
                       <span
-                        className="text-xs text-zinc-400"
+                        className="text-xs text-gray-500"
                         aria-hidden="true"
                       >
                         {session.user.email}
