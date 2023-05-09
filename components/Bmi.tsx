@@ -19,7 +19,6 @@ export const Bmi: FC = () => {
   }, []);
 
   async function calculateBMI() {
-    console.log("Calculating BMI");
     let result;
     if (height === 0 || weight === 0) {
       setSBMI("0");

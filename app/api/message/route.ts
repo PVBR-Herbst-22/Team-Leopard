@@ -1,8 +1,18 @@
 import { chatbotPromt } from "@/helpers/constants/chatbot-prompt";
+import { fetchRedis } from "@/helpers/redis";
+import { authOptions } from "@/lib/auth";
 import { ChatGPTMessage, OpenAIStream, OpenAIStreamPayload } from "@/lib/openai-stream";
 import { MessageArraySchema } from "@/lib/validators/message";
+import { getServerSession } from "next-auth";
 
 export async function POST(req: Request) {
+
+  const session = await getServerSession(authOptions);
+
+  const rawBmiData = (await fetchRedis("get", `bmi:${session?.user.id}`)) as string;
+
+  const bmiData = JSON.parse(rawBmiData) as BmiData[];
+
   const { messages } = await req.json();
 
   const parsedMessages = MessageArraySchema.parse(messages);
@@ -14,7 +24,7 @@ export async function POST(req: Request) {
 
   outboundMessages.unshift({
     role: "system",
-    content: chatbotPromt,
+    content: chatbotPromt(bmiData),
   });
 
   const payload: OpenAIStreamPayload = {
