@@ -5,7 +5,11 @@ export default function Home() {
         <div className="flex justify-center items-center">
           <h1 className="text-9xl font-bold pt-10">Fitness App</h1>
         </div>
-      </main>
-    </>
+              <div className="flex">
+                  
+                  
+        </div>
+      </div>
+    </div>
   );
 }

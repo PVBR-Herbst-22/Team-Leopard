@@ -1,6 +1,5 @@
 import { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import jwt from "jsonwebtoken";
 import { db } from "./db";
 import { UpstashRedisAdapter } from "@next-auth/upstash-redis-adapter";
 
