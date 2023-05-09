@@ -1,5 +1,5 @@
+"use client";
 import { useEffect, useState } from 'react'
-import './App.css'
 
 export default function Tool() {
   const [height, setHeight] = useState(0)
@@ -246,44 +246,63 @@ export default function Tool() {
 
   return (
     <>
-      <div className="app">
-        <div className="title_container">
-          <h1 className="title">BMI</h1>
-        </div>
-        <div className="content_container">
-          <div className="content">
-            <div className="content_title">
-              <Title level={3}></Title>
-            </div>
-            <div className="content_form">
-              <div className="form">
-                <div className="form_item">
-                  <label htmlFor="height" className="label">Height in cm</label>
-                  <InputNumber min={1} max={300} value={height} onChange={(e: any) => setHeight(e)} onPressEnter={calculateBMI} />
+      <div className="card w-96 bg-base-100 shadow-xl">
+        <div className="card-body">
+          <h2 className="card-title">BMI</h2>
+          <div className="app">
+            <div className="content_container">
+              <div className="content">
+                <div className="content_title">
+                  {/** <Title level={3}></Title>*/}
                 </div>
-              </div>
-              <div className="form_item">
-                <label htmlFor="weight" className="label">Weight in kg</label>
-                <InputNumber min={1} max={300} value={weight} onChange={(e: any) => setWeight(e)} onPressEnter={calculateBMI} />
-              </div>
-              <div className="form_item">
-                <label htmlFor="weight" className="label">Age</label>
-                <InputNumber min={1} max={150} value={age} onChange={(e: any) => setAge(e)} onPressEnter={calculateBMI} />
-              </div>
-              <div className="form_item">
-                <Radio.Group value={gender} onChange={(e: any) => setGender(e.target.value)}>
-                  <Radio value="m" className="radio">Male</Radio>
-                  <Radio value="f" className="radio">Female</Radio>
-                </Radio.Group>
-              </div>
-              <div className="button">
-                <Button type="primary" onClick={calculateBMI}>Calculate</Button>
-              </div>
+                <div className="content_form">
+                  <div className="form">
+                    <div className="form_item">
+                      <label htmlFor="height" className="label">Height in cm</label>
+                      <input type="number" min="50" placeholder="Type here" className="input input-bordered input-primary w-full max-w-xs" value={height} onChange={(e: any) => setHeight(e.target.value)} />
+                    </div>
+                  </div>
+                  <div className="form_item">
+                    <label htmlFor="weight" className="label">Weight in kg</label>
+                    <input type="number" min="20"placeholder="Type here" className="input input-bordered input-primary w-full max-w-xs" value={weight} onChange={(e: any) => setWeight(e.target.value)} />
+                  </div>
+                  <div className="form_item">
+                    <label htmlFor="weight" className="label">Age: {age}</label>
+                    <input type="range" min="0" max="100" className="range" step="1" value={age} onChange={(e: any) => setAge(e.target.value)} />
+                    <div className="w-full flex justify-between text-xs px-2">
+                      <span>1</span>
+                      <span>25</span>
+                      <span>50</span>
+                      <span>75</span>
+                      <span>100</span>
+                    </div>
+                  </div>
+                  <div className="form_item">
+                    <div className="form-control">
+                      <label className="label cursor-pointer">
+                        <span className="label-text">Female</span>
+                        <input type="radio" name="radio-10" className="radio checked:bg-red-500" value="f" checked />
+                      </label>
+                    </div>
+                    <div className="form-control">
+                      <label className="label cursor-pointer">
+                        <span className="label-text">Male</span>
+                        <input type="radio" name="radio-10" className="radio checked:bg-blue-500" checked />
+                      </label>
+                    </div>
+                  </div>
+                  <div className="button">
+                    <button className="btn btn-secondary" onClick={calculateBMI}>Calculate</button>
 
-              <div className="form_item" id="bmi">
-                <label htmlFor="bmi" className="bmi_title">Your BMI is</label>
-                <p className="label" id="bmi_label">{sbmi}</p>
-                <p className="msg">{message}</p>
+                  </div>
+
+                  <div className="form_item" id="bmi">
+                    <label htmlFor="bmi" className="bmi_title">Your BMI is</label>
+                    <p className="label" id="bmi_label">{sbmi}</p>
+                    <p className="msg">{message}</p>
+                    
+                  </div>
+                </div>
               </div>
             </div>
           </div>
