@@ -1,7 +1,10 @@
 "use client";
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
 
-export default function Bmi() {
+export interface BmiProps { }
+
+export const Bmi: FC = () => {
   const [height, setHeight] = useState(0);
   const [weight, setWeight] = useState(0);
   const [age, setAge] = useState(0);
@@ -15,7 +18,7 @@ export default function Bmi() {
     setSBMI("0");
   }, []);
 
-  function calculateBMI() {
+  async function calculateBMI() {
     console.log("Calculating BMI");
     let result;
     if (height === 0 || weight === 0) {
@@ -257,6 +260,23 @@ export default function Bmi() {
         }
       }
     }
+    const bmiData: BmiData = {
+      bmi: sbmi,
+      message: message,
+      date: Date.now(),
+    };
+
+    const res = await fetch("/api/bmi", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(bmiData),
+    });
+      
+      if (!res.ok) {
+          toast.error("Something went wrong");
+      }
   }
 
   return (
@@ -372,4 +392,6 @@ export default function Bmi() {
       </div>
     </>
   );
-}
+};
+
+export default Bmi;
