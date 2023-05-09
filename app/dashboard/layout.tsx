@@ -4,7 +4,11 @@ import React, { FC } from "react";
 interface RootLayoutProps {
     children: React.ReactNode;
 }
- 
+
+export const metadata = {
+    title: "Chat Buddy",
+}
+
 const RootLayout: FC<RootLayoutProps> = ({children}) => {
     return ( 
         <>

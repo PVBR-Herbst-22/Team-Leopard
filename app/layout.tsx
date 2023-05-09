@@ -5,6 +5,10 @@ import { getServerSession } from "next-auth";
 import Image from "next/image";
 import "./globals.css";
 
+export const metadata = {
+  title: "Fitness App"
+}
+
 export default async function RootLayout({
   children,
 }: {
