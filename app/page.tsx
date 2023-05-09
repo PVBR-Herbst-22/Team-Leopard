@@ -1,14 +1,18 @@
-import Image from "next/image";
-import man from "public/giphy.gif";
-
 export default function Home() {
   return (
-    <div className="h-full from-primary to-secondary bg-gradient-to-br flex flex-row justify-center items-center">
-      <div className="h-fit flex items-center">
-        <div className="flex justify-center items-center">
-          <h1 className="text-9xl font-bold">Fitness App</h1>
+    <>
+      <main>
+        <div className="min-h-full flex flex-row justify-center items-center">
+          <div className="flex items-center flex-col">
+            <div className="flex justify-center items-center">
+              <h1 className="text-9xl font-bold pt-10">Fitness App</h1>
+            </div>
+            <div className="flex justify-center items-center">
+              <p className="text-5xl font-bold pt-20">Login to get started</p>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      </main>
+    </>
   );
 }
